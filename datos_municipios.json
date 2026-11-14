@@ -1,0 +1,137 @@
+{
+  "metadata": {
+    "proyecto": "TierraFirme",
+    "version": "1.0-MVP",
+    "fuentes_satelitales": ["NASA POWER", "SMAP", "Landsat 8-9", "Sentinel-2", "SRTM"],
+    "fuentes_territoriales": ["FAO GAEZ", "INETER", "INIDE"],
+    "escenarios": ["normal", "canicula", "seco"],
+    "cultivos": ["maiz", "frijol", "sorgo", "cafe"]
+  },
+  "municipios": [
+    {
+      "codigo": "NS-DIP",
+      "nombre": "Dipilto",
+      "departamento": "Nueva Segovia",
+      "centroide": { "lat": 13.722, "lon": -86.508 },
+      "perfil_biofisico": {
+        "elevacion_media_msnm": 1120,
+        "pendiente_media_pct": 24.5,
+        "riesgo_erosion": "alto",
+        "precipitacion_anual_mm": 965,
+        "racha_seca_max_dias": 28,
+        "humedad_suelo_raiz_m3m3": 0.21,
+        "meses_suelo_desnudo": ["Febrero", "Marzo", "Abril"],
+        "suelo_dominante": "Franco-arcilloso en ladera (FAO GAEZ)",
+        "cultivos_aptos": ["maiz", "frijol", "sorgo", "cafe"]
+      },
+      "evaluacion_cultivos": {
+        "maiz": {
+          "tipo_sistema": "anual_rotacion",
+          "escenarios": {
+            "canicula": {
+              "estrategias": [
+                {
+                  "codigo": "E1",
+                  "nombre": "Línea Base Tradicional",
+                  "manejo_resumen": "Siembra continua de maíz/frijol con quema de rastrojo en verano.",
+                  "semaforo": "rojo",
+                  "etiqueta_riesgo": "Riesgo Alto por Sequía y Erosión",
+                  "puntajes_prioridad": {
+                    "ahorrar_agua": 25,
+                    "proteger_laderas": 20,
+                    "mejorar_fertilidad": 25,
+                    "diversificar_ingresos": 30
+                  },
+                  "metricas_estimadas": {
+                    "rendimiento_t_ha": { "medio": 1.1, "min": 0.6, "max": 1.4 },
+                    "estres_hidrico_0_1": { "medio": 0.74, "min": 0.65, "max": 0.85 },
+                    "cambio_materia_organica_5a_pct": { "medio": -0.4, "min": -0.7, "max": -0.1 }
+                  },
+                  "explicabilidad": {
+                    "justificacion": "La quema de rastrojo deja la ladera expuesta durante la canícula, acelerando la evaporación y pérdida de suelo fértil.",
+                    "evidencia_analogos": "Transferencia calibrada (f_clima=0.92, f_suelo=0.88, f_cultivo=1.00) desde laderas semiáridas de Honduras y El Salvador.",
+                    "nivel_confianza": "alto",
+                    "vacios_informacion": "Sin datos de análisis químico puntual de pH por parcela.",
+                    "alerta_validacion_local": "Verificar humedad residual antes de resiembra de postrera con técnico local."
+                  }
+                },
+                {
+                  "codigo": "E2",
+                  "nombre": "Conservación Hídrica (Sorgo + Mulch)",
+                  "manejo_resumen": "Relevo con sorgo (maicillo) tolerante a sequía y cobertura muerta de rastrojo.",
+                  "semaforo": "verde",
+                  "etiqueta_riesgo": "Favorable para Estabilidad Hídrica",
+                  "puntajes_prioridad": {
+                    "ahorrar_agua": 90,
+                    "proteger_laderas": 75,
+                    "mejorar_fertilidad": 65,
+                    "diversificar_ingresos": 82
+                  },
+                  "metricas_estimadas": {
+                    "rendimiento_t_ha": { "medio": 1.9, "min": 1.5, "max": 2.3 },
+                    "estres_hidrico_0_1": { "medio": 0.36, "min": 0.28, "max": 0.45 },
+                    "cambio_materia_organica_5a_pct": { "medio": 0.3, "min": 0.1, "max": 0.5 }
+                  },
+                  "explicabilidad": {
+                    "justificacion": "El rastrojo en cobertura reduce la evaporación superficial y el sorgo aprovecha humedad profunda cuando falla la lluvia.",
+                    "evidencia_analogos": "Calibrado con ensayos de sistemas Quesungual y relevo maicillo en el Corredor Seco Centroamericano.",
+                    "nivel_confianza": "alto",
+                    "vacios_informacion": "Variabilidad de precio local del sorgo forrajero según demanda ganadera del ciclo.",
+                    "alerta_validacion_local": "Ajustar densidad de siembra del relevo con asesor agronómico para evitar competencia por luz."
+                  }
+                },
+                {
+                  "codigo": "E3",
+                  "nombre": "Regeneración de Suelos y Laderas",
+                  "manejo_resumen": "Rotación con leguminosas de cobertura (Canavalia / Mucuna) o ajonjolí.",
+                  "semaforo": "verde",
+                  "etiqueta_riesgo": "Óptimo para Suelo y Pendientes",
+                  "puntajes_prioridad": {
+                    "ahorrar_agua": 78,
+                    "proteger_laderas": 94,
+                    "mejorar_fertilidad": 92,
+                    "diversificar_ingresos": 80
+                  },
+                  "metricas_estimadas": {
+                    "rendimiento_t_ha": { "medio": 1.7, "min": 1.3, "max": 2.1 },
+                    "estres_hidrico_0_1": { "medio": 0.42, "min": 0.34, "max": 0.52 },
+                    "cambio_materia_organica_5a_pct": { "medio": 0.8, "min": 0.5, "max": 1.1 }
+                  },
+                  "explicabilidad": {
+                    "justificacion": "Fija nitrógeno atmosférico, amarra el suelo en pendientes pronunciadas y mejora la infiltración a mediano plazo.",
+                    "evidencia_analogos": "Transferencia desde laderas degradadas de Centroamérica con abonos verdes (f_clima=0.90, f_suelo=0.94).",
+                    "nivel_confianza": "medio",
+                    "vacios_informacion": "Disponibilidad inmediata de semilla de Mucuna/Canavalia en bancos comunitarios locales.",
+                    "alerta_validacion_local": "Realizar chapoda oportuna de la leguminosa para evitar exceso de sombra o humedad en postrera."
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "cafe": {
+          "tipo_sistema": "perenne_agroforestal",
+          "escenarios": {
+            "canicula": {
+              "estrategias": [
+                {
+                  "codigo": "E1",
+                  "nombre": "Manejo Convencional de Cafetal",
+                  "manejo_resumen": "Sombra escasa u homogénea con callejones descubiertos entre surcos.",
+                  "semaforo": "amarillo",
+                  "etiqueta_riesgo": "Vulnerable a Estrés Térmico",
+                  "puntajes_prioridad": {
+                    "ahorrar_agua": 40,
+                    "proteger_laderas": 35,
+                    "mejorar_fertilidad": 45,
+                    "diversificar_ingresos": 50
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  ]
+}
